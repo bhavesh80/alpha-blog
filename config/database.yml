@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   host: db-for-website.c1ppj9yvn0to.ap-south-1.rds.amazonaws.com
   port: 3306
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
   username: admin
   password: J9LH4oEdVgHt5UbiHzG5
   socket: /var/run/mysqld/mysqld.sock
@@ -50,7 +50,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: test
-  username: appname
-  password: J9LH4oEdVgHt5UbiHzG5
+  <<:       *default
+  host:     ENV['CLEARDB_DATABASE_URL']
+  database: ENV['DB_NAME']
+  adapter:  mysql2
+  encoding: utf8
+  username: admin
+  password: ENV['DB_PASSWORD']
