@@ -56,3 +56,4 @@ production:
   encoding: utf8
   username: ENV['USERNAME']
   password: ENV['DB_PASSWORD']
+  port: 3306
